@@ -3,6 +3,10 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AsignaturaController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\StudentController;
+use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\CourseController;
+use App\Http\Controllers\GradeController;
 
 
 /*
@@ -36,10 +40,17 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::resource('students', 'StudentController');
-    Route::resource('teachers', 'TeacherController');
-    Route::resource('courses', 'CourseController');
-    Route::resource('grades', 'GradeController');
+    // Rutas para estudiantes
+        Route::resource('students', StudentController::class);
+
+    // Rutas para profesores
+        Route::resource('teachers', TeacherController::class);
+
+    // Rutas para cursos
+        Route::resource('courses', CourseController::class);
+
+    // Rutas para calificaciones
+        Route::resource('grades', GradeController::class);
 
    
 
