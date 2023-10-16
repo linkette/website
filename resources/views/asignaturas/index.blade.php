@@ -12,44 +12,12 @@
                     {{-- aca esta el texto que aparece arriba del form  --}}
                     {{-- {{ __('realizar la asignación de sus cursos!') }} --}}
 
-                    {{-- <form method="POST"">
-                        @csrf
-                        <div name="datos" class=" dark:bg-gray-600 overflow-hidden text-center py-4 px-5 font-bold">
-                            <div class="  grid grid-cols-2 divide-2 divide-2">
-                                <div name="carne">
-                                    <p class=" text-right text-red-600">Carne: </p>
-                                </div>
-                                <div name="carne_num">
-                                    <p class="text-left text-violet-500"> 2002002002</p>
-                                </div>
-                                <div nam="nombre">
-                                    <p class="text-right text-red-600">Nombre: </p>
-                                </div>
-                                <div name="nombre_descr">
-                                    <p class="text-left text-violet-500">Eddy Estuardo Yoc Valdés</p>
-                                </div>
-                                <div>
-                                    <p class="text-right text-red-600">Carrera: </p>
-                                </div>
-                                <div>
-                                    <p class="text-left text-violet-500">Ingenieria En sistemas</p>
-                                </div>
-                                <div>
-                                    <textarea name="text" class=" bg-transparent ">escribir</textarea>
-                                </div>
-                            </div>
-
-
-                            <br><br>
-                            <button
-                                class="bg-red-600
-                                        hover:bg-red-800 text-white font-bold py-2 px-5 rounded-full">asignar
-                                cursos
-                            </button>
-
-                        </div>
-
-                    </form> --}}
+                    <label for="student_id">Selecciona un estudiante:</label>
+                    <select name="student_id" required>
+                        @foreach ($students as $student)
+                            <option value="{{ $student->id }}">{{ $student->name }}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
         </div>
