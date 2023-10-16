@@ -36,14 +36,16 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    // Route::get('/estudiantes', [EstudianteController::class, 'index'])->name('estudiantes.index');
-    // Route::get('/asignaturas', [AsignaturaController::class, 'index'])->name('asignaturas.index');
+    Route::resource('students', 'StudentController');
+    Route::resource('teachers', 'TeacherController');
+    Route::resource('courses', 'CourseController');
+    Route::resource('grades', 'GradeController');
 
    
 
-    Route::get('/asignaturas', function (){ return view('asignaturas.index'); })->name('asignaturas.index');
+    Route::get('/students', function (){ return view('students.index'); })->name('students.index');
     
-    Route::post('/asignaturas', function () {
+    Route::post('/students', function () {
 
         $materia = request('materia');
 

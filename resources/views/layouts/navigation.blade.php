@@ -17,7 +17,7 @@
                         <x-aplication-logo2 class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('asignaturas.index')" :active="request()->routeIs('asignaturas.index')">
+                    <x-nav-link :href="route('students.index')" :active="request()->routeIs('students.index')">
                         <x-application-logo3 class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
                         {{ __('Asignacion') }}
                     </x-nav-link>
@@ -89,7 +89,7 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('asignaturas.index')" :active="request()->routeIs('asignaturas.index')">
+            <x-responsive-nav-link :href="route('students.index')" :active="request()->routeIs('students.index')">
                 {{ __('Asignacion') }}
             </x-responsive-nav-link>
             {{-- <x-responsive-nav-link :href="route('students.create')" :active="request()->routeIs('students.create')">
