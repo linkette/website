@@ -11,12 +11,7 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     {{-- aca esta el texto que aparece arriba del form  --}}
                     {{-- {{ __('realizar la asignación de sus cursos!') }} --}}
-                    <label for="student_id">Selecciona un estudiante:</label>
-                    <select name="student_id" required>
-                        @foreach ($students as $student)
-                            <option value="{{ $student->id }}">{{ $student->name }}</option>
-                        @endforeach
-                    </select>
+
 
                 </div>
             </div>
