@@ -52,23 +52,13 @@ Route::middleware('auth')->group(function () {
     // Rutas para calificaciones
         Route::resource('grades', GradeController::class);
 
-   
 
-    Route::get('/students', function (){ return view('students.index'); })->name('students.index');
+    // rutas para estudiantes en clases 
+        Route::resource('classroom-student', ClassroomStudentController::class);
+
+     // rutas para maestres en clases 
+        Route::resource('classroom-teacher', ClassroomTeacherController::class);
     
-    Route::post('/students', function () {
-
-        $materia = request('materia');
-
-        // 
-        asigna::create([
-            'materia' => $materia,
-            'usar_id' => auth()->id(),
-        ]);
-        
-    
-    });
-   
 });
 
 require __DIR__.'/auth.php';

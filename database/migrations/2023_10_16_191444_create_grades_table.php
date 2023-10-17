@@ -9,7 +9,7 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
         Schema::create('grades', function (Blueprint $table) {
             $table->id();
@@ -18,17 +18,17 @@ return new class extends Migration
             $table->decimal('score', 5, 2);
             $table->timestamps();
 
-            $table->foreing('student_id')->references('id')->on('students');
-            $table->foreing('course_id')->references('id')->on('course');
+            // Definir la clave foránea para 'student_id'
+            $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
 
+            // Definir la clave foránea para 'course_id'
+            $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
+    public function down()
     {
         Schema::dropIfExists('grades');
     }
 };
+
