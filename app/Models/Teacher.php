@@ -16,4 +16,10 @@ class Teacher extends Model
             ->withTimestamps(); // Esto agrega automáticamente las columnas created_at y updated_at en la tabla pivot.
     }
 
+    public function courses()
+    {
+        return $this->belongsToMany(Course::class)
+            ->withTimestamps(); // Esto agrega automáticamente las columnas created_at y updated_at en la tabla pivot.
+    }
+
 }

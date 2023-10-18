@@ -21,6 +21,10 @@
                         <x-application-logo3 class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
                         {{ __('Asignacion') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('teachers.index')" :active="request()->routeIs('teachers.index')">
+                        <x-aplication-logo2 class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
+                        {{ __('Teachers') }}
+                    </x-nav-link>
                     {{-- <x-nav-link :href="route('students.create')" :active="request()->routeIs('students.create')">
                         <x-application-logo3 class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
                         {{ __('Creacion de Estudiantes') }}
@@ -91,6 +95,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('students.index')" :active="request()->routeIs('students.index')">
                 {{ __('Asignacion') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('teachers.index')" :active="request()->routeIs('teachers.index')">
+                {{ __('teachers') }}
             </x-responsive-nav-link>
             {{-- <x-responsive-nav-link :href="route('students.create')" :active="request()->routeIs('students.create')">
                 {{ __('Crear Estudiante') }}

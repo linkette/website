@@ -14,12 +14,12 @@ class TeacherController extends Controller
 
     public function create()
     {
-        return view('teacher.create');
+        return view('teachers.create');
     }
 
     public function store(Request $request)
     {
-        $data = $request->vaidate([
+        $data = $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:teachers,email',
         ]);
@@ -31,13 +31,13 @@ class TeacherController extends Controller
     public function show($id)
     {
         $teacher = Teacher::find($id);
-        return view('teacher.show', compact('teacher'));
+        return view('teachers.show', ['teacher' => $teacher]);
     }
 
     public function edit($id)
     {
         $teacher = Teacher::find($id);
-        return view('teacher.show', compact('teacher'));
+        return view('teachers.edit', compact('teacher'));
     }
 
     public function update(Request $request, $id)

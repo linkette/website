@@ -52,7 +52,6 @@ Route::middleware('auth')->group(function () {
     // Rutas para calificaciones
         Route::resource('grades', GradeController::class);
 
-
     // rutas para estudiantes en clases 
         Route::resource('classroom-student', ClassroomStudentController::class);
 
