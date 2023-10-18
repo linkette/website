@@ -7,6 +7,7 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\GradeController;
+use App\Http\Controllers\ClassroomController;
 
 
 /*
@@ -55,9 +56,11 @@ Route::middleware('auth')->group(function () {
     // rutas para estudiantes en clases 
         Route::resource('classroom-student', ClassroomStudentController::class);
 
-     // rutas para maestres en clases 
+    // rutas para maestres en clases 
         Route::resource('classroom-teacher', ClassroomTeacherController::class);
-    
+    //rutas para las clases
+        Route::resource('classroom', ClassroomController::class);
+
 });
 
 require __DIR__.'/auth.php';
