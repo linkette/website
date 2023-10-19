@@ -33,7 +33,11 @@
                                 <p class="text-gray-700 text-base"><strong>Nombre:</strong> {{ $teacher->name }}</p>
                                 <p class="text-gray-700 text-base"><strong>Correo Electrónico:</strong>
                                     {{ $teacher->email }}</p>
-                                <p class="text-gray-700 text-base"><strong>Catedra:</strong></p>
+                                <p class="text-gray-700 text-base"><strong>Catedra:</strong>
+                                    @foreach ($teacher->courses as $course)
+                                        <p>{{ $course->name }}</p>
+                                    @endforeach
+                                </p>
                             </div>
                             <div class="flex items-center">
                                 <a href="{{ route('students.index') }}"

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Teacher;
+use App\Models\Course;
 
 class TeacherController extends Controller
 {
@@ -14,18 +15,35 @@ class TeacherController extends Controller
 
     public function create()
     {
-        return view('teachers.create');
+        // return view('teachers.create');
+        $courses = Course::all(); // Obtiene la lista de cursos disponibles
+        return view('teachers.create', compact('courses'));
     }
 
     public function store(Request $request)
     {
-        $data = $request->validate([
-            'name' => 'required',
+        $request->validate([
+            'name' => 'required|string|max:255',
             'email' => 'required|email|unique:teachers,email',
         ]);
+    
+        $teacher = Teacher::create([
+            'name' => $request->name,
+            'email' => $request->email,
+        ]);
+    
+        // Asigna los cursos al profesor
+        $teacher->courses()->sync($request->courses);
+    
+        return redirect()->route('teachers.index')->with('success', 'Profesor creado exitosamente');
+    
+        // $data = $request->validate([
+        //     'name' => 'required',
+        //     'email' => 'required|email|unique:teachers,email',
+        // ]);
 
-        Teacher::create($data);
-        return redirect()->route('teachers.index')->with('success', 'Profesor creado con éxito');
+        // Teacher::create($data);
+        // return redirect()->route('teachers.index')->with('success', 'Profesor creado con éxito');
     }
 
     public function show($id)
@@ -34,24 +52,51 @@ class TeacherController extends Controller
         return view('teachers.show', ['teacher' => $teacher]);
     }
 
-    public function edit($id)
+    public function edit(Teacher $teacher)
     {
-        $teacher = Teacher::find($id);
-        return view('teachers.edit', compact('teacher'));
+    $courses = Course::all(); // Obtiene la lista de cursos disponibles
+    return view('teachers.edit', compact('teacher', 'courses'));
     }
+    // public function edit($id)
+    // {
+        
 
-    public function update(Request $request, $id)
+    //     $teacher = Teacher::find($id);
+    //     return view('teachers.edit', compact('teacher'));
+    //     $course = Course::find($id);
+    //     return view( 'teachers.edit', compact('course'));
+    // }
+    public function update(Request $request, Teacher $teacher)
     {
-        $data = $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:teachers,email,' . $id,
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:teachers,email',
+            'course' => 'array', // Asegúrate de que 'courses' sea un arreglo
         ]);
-
-        $teacher = Teacher::find($id);
-        $teacher->update($data);
-
-        return redirect()->route('teachers.index')->with('success', 'Profesor Actualizado con éxito.');
+    
+        $teacher->update([
+            'name' => $request->name,
+            'email' => $request->email,
+        ]);
+    
+        $teacher->courses()->sync($request->courses); // Sincroniza las cátedras
+    
+        return redirect()->route('teachers.index')->with('success', 'Profesor actualizado exitosamente');
     }
+    
+    // public function update(Request $request, $id)
+    // {
+        
+    //     $data = $request->validate([
+    //         'name' => 'required',
+    //         'email' => 'required|email|unique:teachers,email,' . $id,
+    //     ]);
+
+    //     $teacher = Teacher::find($id);
+    //     $teacher->update($data);
+
+    //     return redirect()->route('teachers.index')->with('success', 'Profesor Actualizado con éxito.');
+    // }
 
     public function destroy($id)
     {
