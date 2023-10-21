@@ -54,12 +54,17 @@ Route::middleware('auth')->group(function () {
         Route::resource('grades', GradeController::class);
 
     // rutas para estudiantes en clases 
-        Route::resource('classroom-student', ClassroomStudentController::class);
+        // Route::resource('classroom-student', ClassroomStudentController::class);
 
     // rutas para maestres en clases 
-        Route::resource('classroom-teacher', ClassroomTeacherController::class);
+        // Route::resource('classroom-teacher', ClassroomTeacherController::class);
     //rutas para las clases
         Route::resource('classroom', ClassroomController::class);
+        // Route::resource('classroom', 'ClassroomController');
+        Route::post('classrooms/{classroom}/assignTeacher', 'ClassroomController@assignTeacher')->name('classrooms.assignTeacher');
+        Route::post('classrooms/{classroom}/assignStudents', 'ClassroomController@assignStudents')->name('classrooms.assignStudents');
+        Route::post('classrooms/{classroom}/assignGrades', 'ClassroomController@assignGrades')->name('classrooms.assignGrades');
+
 
 });
 

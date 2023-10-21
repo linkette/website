@@ -10,36 +10,39 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     {{-- {{ __("You're logged in!") }} --}}
-                    <h1>Crear Nueva Clase</h1>
+                    <h1>Crear Nueva Aula</h1>
 
                     <form method="POST" action="{{ route('classroom.store') }}">
                         @csrf
 
                         <div class="form-group">
-                            <label for="nombre">Nombre de la Clase:</label>
-                            <input type="text" name="nombre" class="form-control">
+                            <label for="detalle">Detalle del Aula:</label>
+                            <input type="text" name="detalle" class="form-control">
                         </div>
 
                         <div class="form-group">
-                            <label for="teacher_id">Profesor:</label>
+                            <label for="teacher_id">Profesor Asignado:</label>
                             <select name="teacher_id" class="form-control">
                                 @foreach ($teachers as $teacher)
-                                    <option value="{{ $teacher->id }}">{{ $teacher->name }}</option>
+                                    <option value="{{ $teacher->id }}">{{ $teacher->nombre }}</option>
                                 @endforeach
                             </select>
                         </div>
 
                         <div class="form-group">
-                            <label for="student">Estudiantes:</label>
-                            <select name="student[]" class="form-control" multiple>
-                                @foreach ($students as $student)
-                                    <option value="{{ $student->id }}">{{ $student->name }}</option>
+                            <label for="course_id">Curso Asociado:</label>
+                            <select name="course_id" class="form-control color-black">
+                                @foreach ($courses as $course)
+                                    <option value="{{ $course->id }}">{{ $course->nombre }}</option>
                                 @endforeach
                             </select>
                         </div>
 
-                        <button type="submit" class="btn btn-primary">Guardar Clase</button>
+                        <button type="submit" class="btn btn-primary">Guardar Aula</button>
                     </form>
+
+                    <a href="{{ route('classroom.index') }}">Volver a la lista de aulas</a>
+
 
                 </div>
             </div>

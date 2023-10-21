@@ -2,23 +2,31 @@
 
 // app/Classroom.php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
 class Classroom extends Model
 {
-    protected $fillable = ['name', 'capacidad']; // Atributos que se pueden llenar
+    protected $fillable = ['detalle'];
 
-    public function teachers()
+    public function teacher()
     {
-        return $this->belongsToMany(Teacher::class, 'classroom_teacher')
-            ->withTimestamps(); // Esto agrega automáticamente las columnas created_at y updated_at en la tabla pivot.
+        return $this->belongsTo(Teacher::class, 'teacher_id');
     }
 
     public function students()
     {
-        return $this->belongsToMany(Student::class)
-            ->withTimestamps(); // Esto agrega automáticamente las columnas created_at y updated_at en la tabla pivot.
+        return $this->belongsToMany(Student::class);
+    }
+
+    public function grades()
+    {
+        return $this->hasMany(Grade::class, 'classroom_id');
+    }
+
+    public function course()
+    {
+        return $this->belongsTo(Course::class, 'course_id');
     }
 }

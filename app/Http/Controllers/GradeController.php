@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Student;
 use App\Models\Grade;
+use App\Models\Course;
+
 
 class GradeController extends Controller
 {
@@ -24,46 +27,59 @@ class GradeController extends Controller
 
     public function store(Request $request)
     {
-        $data = $request->validate([
+        $request->validate([
             'student_id' => 'required',
             'course_id' => 'required',
-            'score' => 'required|numeric|min:0|max:100',
+            'score' => 'required',
         ]);
 
-        Grade::create($data);
+        Grade::create($request->all());
 
-        return redirect()->route('grades.index')->with('success', 'Calificación creada con éxito.');
+        return redirect()->route('grades.index')->with('success', 'Calificación creada exitosamente');
     }
 
-    public function show($id)
+    public function show(Grade $grade)
     {
-        $grade = Grade::find($id);
         return view('grades.show', compact('grade'));
     }
 
-    public function edit($id)
+    public function edit(Grade $grade)
     {
-        $grade = Grade::find($id);
-        
-        // Deberías cargar una lista de estudiantes y cursos disponibles
         $students = Student::all();
         $courses = Course::all();
-        
         return view('grades.edit', compact('grade', 'students', 'courses'));
+    
+        // $grade = Grade::find($id);
+        
+        // // Deberías cargar una lista de estudiantes y cursos disponibles
+        // $students = Student::all();
+        // $courses = Course::all();
+        
+        // return view('grades.edit', compact('grade', 'students', 'courses'));
     }
-
-    public function update(Request $request, $id)
+    public function update(Request $request, Grade $grade)
+    // public function update(Request $request, $id)
     {
-        $data = $request->validate([
+        $request->validate([
             'student_id' => 'required',
             'course_id' => 'required',
-            'score' => 'required|numeric|min:0|max:100',
+            'score' => 'required',
         ]);
 
-        $grade = Grade::find($id);
-        $grade->update($data);
+        $grade->update($request->all());
 
-        return redirect()->route('grades.index')->with('success', 'Calificación actualizada con éxito.');
+        return redirect()->route('grades.index')->with('success', 'Calificación actualizada exitosamente');
+    
+        // $data = $request->validate([
+        //     'student_id' => 'required',
+        //     'course_id' => 'required',
+        //     'score' => 'required|numeric|min:0|max:100',
+        // ]);
+
+        // $grade = Grade::find($id);
+        // $grade->update($data);
+
+        // return redirect()->route('grades.index')->with('success', 'Calificación actualizada con éxito.');
     }
 
     public function destroy($id)

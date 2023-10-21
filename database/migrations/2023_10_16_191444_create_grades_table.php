@@ -15,14 +15,14 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('student_id');
             $table->unsignedBigInteger('course_id');
-            $table->decimal('score', 5, 2);
+            // $table->unsignedBigInteger('classroom_id');
+            $table->decimal('score', 5);
             $table->timestamps();
 
-            // Definir la clave foránea para 'student_id'
-            $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
-
-            // Definir la clave foránea para 'course_id'
-            $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');
+            // Restricciones de clave foránea
+            $table->foreign('student_id')->references('id')->on('students');
+            $table->foreign('course_id')->references('id')->on('courses');
+            // $table->foreign('classroom_id')->references('id')->on('classrooms');
         });
     }
 

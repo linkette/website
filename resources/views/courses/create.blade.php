@@ -12,17 +12,27 @@
 
 
 
-                    @section('content')
-                        <h1>Registrar Curso</h1>
-                        <form action="{{ route('courses.store') }}" method="post">
-                            @csrf
-                            <div class="form-group">
-                                <label for="name">Nombre del Curso:</label>
-                                <input type="text" name="name" id="name" class="form-control" required>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Guardar</button>
-                        </form>
-                    @endsection
+
+                    <h1>Crear Nuevo Curso</h1>
+
+                    <form method="POST" action="{{ route('courses.store') }}">
+                        @csrf
+
+                        <div class="form-group">
+                            <label for="name">Nombre del Curso:</label>
+                            <input type="text" name="name" class="form-control">
+                        </div>
+
+                        {{-- <div class="form-group">
+                            <label for="descripcion">Descripción:</label>
+                            <textarea name="descripcion" class="form-control"></textarea>
+                        </div> --}}
+
+                        <button type="submit" class="btn btn-primary">Guardar Curso</button>
+                    </form>
+
+                    <a href="{{ route('courses.index') }}" class="btn btn-secondary">Volver al Listado de Cursos</a>
+
 
 
 

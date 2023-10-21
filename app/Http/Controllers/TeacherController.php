@@ -32,8 +32,9 @@ class TeacherController extends Controller
             'email' => $request->email,
         ]);
     
-        // Asigna los cursos al profesor
         $teacher->courses()->sync($request->courses);
+        // Asigna los cursos al profesor
+        
     
         return redirect()->route('teachers.index')->with('success', 'Profesor creado exitosamente');
     

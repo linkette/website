@@ -25,6 +25,18 @@
                         <x-aplication-logo2 class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
                         {{ __('Teachers') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('courses.index')" :active="request()->routeIs('courses.index')">
+                        <x-aplication-logo2 class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
+                        {{ __('Cursos') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('grades.index')" :active="request()->routeIs('grades.index')">
+                        <x-aplication-logo2 class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
+                        {{ __('Calificaciones') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('classroom.index')" :active="request()->routeIs('classroom.index')">
+                        <x-aplication-logo2 class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
+                        {{ __('Aulas') }}
+                    </x-nav-link>
                     {{-- <x-nav-link :href="route('students.create')" :active="request()->routeIs('students.create')">
                         <x-application-logo3 class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
                         {{ __('Creacion de Estudiantes') }}
@@ -97,7 +109,16 @@
                 {{ __('Asignacion') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('teachers.index')" :active="request()->routeIs('teachers.index')">
-                {{ __('teachers') }}
+                {{ __('Teachers') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('courses.index')" :active="request()->routeIs('courses.index')">
+                {{ __('Cursos') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('grades.index')" :active="request()->routeIs('grades.index')">
+                {{ __('Calificaciones') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('classroom.index')" :active="request()->routeIs('classroom.index')">
+                {{ __('Aulas') }}
             </x-responsive-nav-link>
             {{-- <x-responsive-nav-link :href="route('students.create')" :active="request()->routeIs('students.create')">
                 {{ __('Crear Estudiante') }}

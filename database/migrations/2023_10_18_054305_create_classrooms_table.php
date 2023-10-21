@@ -13,9 +13,17 @@ return new class extends Migration
     {
         Schema::create('classrooms', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
-            $table->integer('capacidad');
+            $table->unsignedBigInteger('course_id');
+            $table->unsignedBigInteger('teacher_id');
+            $table->unsignedBigInteger('grade_id');
+            $table->string('name');
+            $table->text('detalle')->nullable();
             $table->timestamps();
+
+            // Restricciones de clave foránea
+            $table->foreign('course_id')->references('id')->on('courses');
+            $table->foreign('teacher_id')->references('id')->on('teachers');
+            $table->foreign('grade_id')->references('id')->on('grades');
         });
     }
 
