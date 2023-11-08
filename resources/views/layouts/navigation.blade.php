@@ -36,6 +36,10 @@
                     <x-nav-link :href="route('classroom.index')" :active="request()->routeIs('classroom.index')">
                         <x-aplication-logo2 class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
                         {{ __('Aulas') }}
+
+
+
+
                     </x-nav-link>
                     {{-- <x-nav-link :href="route('students.create')" :active="request()->routeIs('students.create')">
                         <x-application-logo3 class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
@@ -118,6 +122,11 @@
                 {{ __('Calificaciones') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('classroom.index')" :active="request()->routeIs('classroom.index')">
+
+
+
+
+
                 {{ __('Aulas') }}
             </x-responsive-nav-link>
             {{-- <x-responsive-nav-link :href="route('students.create')" :active="request()->routeIs('students.create')">

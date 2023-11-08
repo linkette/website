@@ -12,22 +12,19 @@
                     {{-- {{ __("You're logged in!") }} --}}
                     <h1>Asignar Estudiantes a Aula</h1>
 
-                    <form method="POST" action="{{ route('classrooms.assignStudents', $classroom) }}">
+                    <form method="POST" action="{{ route('classrooms.storeStudents', $classroom) }}">
                         @csrf
 
-                        <div class="form-group">
-                            <label for="student_ids[]">Seleccionar Estudiantes:</label>
-                            <select name="student_ids[]" multiple class="form-control">
-                                @foreach ($students as $student)
-                                    <option value="{{ $student->id }}">{{ $student->nombre }}</option>
-                                @endforeach
-                            </select>
-                        </div>
+                        <label for="students">Seleccione los estudiantes a asignar:</label>
+                        <select name="students[]" multiple>
+                            @foreach ($students as $student)
+                                <option value="{{ $student->id }}">{{ $student->name }}</option>
+                            @endforeach
+                        </select>
 
-                        <button type="submit" class="btn btn-primary">Asignar Estudiantes</button>
+                        <button type="submit" class="btn btn-primary">Guardar Asignación</button>
                     </form>
 
-                    <a href="{{ route('classrooms.show', $classroom) }}">Volver a los detalles del aula</a>
 
 
                 </div>

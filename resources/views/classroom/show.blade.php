@@ -17,25 +17,25 @@
                         <p>Detalle del Aula: {{ $classroom->detalle }}</p>
 
                         <h2>Profesor Asignado</h2>
-                        <p>Nombre del Profesor: {{ $teacher->nombre }}</p>
+                        <p>Nombre del Profesor: {{ $teacher->name }}</p>
                         <!-- Otra información del profesor -->
 
                         <h2>Estudiantes en el Aula</h2>
                         <ul>
                             @foreach ($students as $student)
-                                <li>{{ $student->nombre }}</li>
+                                <li>{{ $student->name }}</li>
                             @endforeach
                         </ul>
 
                         <h2>Calificaciones en el Aula</h2>
-                        <ul>
+                        {{-- <ul>
                             @foreach ($grades as $grade)
                                 <li>Calificación: {{ $grade->score }}</li>
                             @endforeach
-                        </ul>
+                        </ul> --}}
 
                         <h2>Curso Asociado al Aula</h2>
-                        <p>Nombre del Curso: {{ $course->nombre }}</p>
+                        <p>Nombre del Curso: {{ $course->name }}</p>
                         <p>Descripción del Curso: {{ $course->descripcion }}</p>
 
                         <a href="{{ route('classroom.index') }}">Volver a la lista de aulas</a>

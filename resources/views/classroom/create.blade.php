@@ -16,24 +16,29 @@
                         @csrf
 
                         <div class="form-group">
-                            <label for="detalle">Detalle del Aula:</label>
-                            <input type="text" name="detalle" class="form-control">
+                            <label for="detalle"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Detalle del
+                                Aula:</label>
+                            <input type="text" name="detalle"
+                                class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400">
                         </div>
 
                         <div class="form-group">
-                            <label for="teacher_id">Profesor Asignado:</label>
-                            <select name="teacher_id" class="form-control">
+                            <label for="teacher_id" class="sr-only">Profesor Asignado:</label>
+                            <select name="teacher_id"
+                                class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
                                 @foreach ($teachers as $teacher)
-                                    <option value="{{ $teacher->id }}">{{ $teacher->nombre }}</option>
+                                    <option value="{{ $teacher->id }}">{{ $teacher->name }}</option>
                                 @endforeach
                             </select>
                         </div>
 
                         <div class="form-group">
-                            <label for="course_id">Curso Asociado:</label>
-                            <select name="course_id" class="form-control color-black">
+                            <label for="course_id" class="sr-only">Curso Asociado:</label>
+                            <select name="course_id"
+                                class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
                                 @foreach ($courses as $course)
-                                    <option value="{{ $course->id }}">{{ $course->nombre }}</option>
+                                    <option value="{{ $course->id }}">{{ $course->name }}</option>
                                 @endforeach
                             </select>
                         </div>

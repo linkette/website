@@ -12,14 +12,13 @@
                     {{-- {{ __("You're logged in!") }} --}}
                     <h1>Asignar Calificaciones a Estudiantes en Aula</h1>
 
-                    <form method="POST" action="{{ route('classrooms.assignGrades', $classroom) }}">
+                    <form method="POST" action="{{ route('classroom.assignGrades', ['classroom' => $classroom]) }}">
                         @csrf
-
                         <div class="form-group">
                             <label for="student_id[]">Seleccionar Estudiante:</label>
                             <select name="student_id[]" class="form-control">
                                 @foreach ($students as $student)
-                                    <option value="{{ $student->id }}">{{ $student->nombre }}</option>
+                                    <option value="{{ $student->id }}">{{ $student->name }}</option>
                                 @endforeach
                             </select>
                         </div>

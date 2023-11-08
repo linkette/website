@@ -61,9 +61,17 @@ Route::middleware('auth')->group(function () {
     //rutas para las clases
         Route::resource('classroom', ClassroomController::class);
         // Route::resource('classroom', 'ClassroomController');
+        Route::post('classrooms/{classroom}/assign-grades', 'ClassroomController@assignGrades')->name('classroom.assignGrades');
+       
         Route::post('classrooms/{classroom}/assignTeacher', 'ClassroomController@assignTeacher')->name('classrooms.assignTeacher');
         Route::post('classrooms/{classroom}/assignStudents', 'ClassroomController@assignStudents')->name('classrooms.assignStudents');
+        // Route::get('classrooms/{classroom}/assignStudents', 'ClassroomController@assignStudents')->name('classrooms.assignStudents');
+        
         Route::post('classrooms/{classroom}/assignGrades', 'ClassroomController@assignGrades')->name('classrooms.assignGrades');
+        Route::get('/classrooms/{classroom}/edit', 'ClassroomController@edit')->name('classrooms.edit');
+        Route::put('/classrooms/{classroom}', 'ClassroomController@update')->name('classrooms.update');
+        Route::delete('/classrooms/{classroom}', 'ClassroomController@destroy')->name('classrooms.destroy');
+
 
 
 });

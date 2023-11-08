@@ -26,6 +26,23 @@ class ClassroomController extends Controller
         return view('classroom.create', compact('teachers', 'courses'));
     }
 
+    public function update(Request $request, Classroom $classroom)
+    {
+        $request->validate([
+            'detalle' => 'required|string|max:255',
+            'teacher_id' => 'required|exists:teachers,id',
+            'course_id' => 'required|exists:courses,id',
+        ]);
+
+        $classroom->update([
+            'detalle' => $request->input('detalle'),
+            'teacher_id' => $request->input('teacher_id'),
+            'course_id' => $request->input('course_id'),
+        ]);
+
+        return redirect()->route('classrooms.show', $classroom)->with('success', 'Aula actualizada exitosamente.');
+    }
+
     public function store(Request $request)
     {
         // Lógica para crear una nueva aula y asignar profesor y curso
@@ -43,10 +60,10 @@ class ClassroomController extends Controller
     {
         $teacher = $classroom->teacher;
         $students = $classroom->students;
-        $grades = $classroom->grades;
+        // $grades = $classroom->grades;
         $course = $classroom->course;
 
-        return view('classroom.show', compact('classroom', 'teacher', 'students', 'grades', 'course'));
+        return view('classroom.show', compact('classroom', 'teacher', 'students', 'course'));
     }
 
     public function assignTeacher(Request $request, Classroom $classroom)
@@ -60,10 +77,10 @@ class ClassroomController extends Controller
 
     public function assignStudents(Request $request, Classroom $classroom)
     {
-        $studentIds = $request->student_ids;
-        $classroom->students()->sync($studentIds);
-
-        return redirect()->route('classroom.show', $classroom)->with('success', 'Estudiantes asignados exitosamente');
+        // Recupera la lista de estudiantes disponibles
+        $students = Student::all();
+    
+        return view('classrooms.assign_students', compact('classroom', 'students'));
     }
 
     public function assignGrades(Request $request, Classroom $classroom)
@@ -73,7 +90,7 @@ class ClassroomController extends Controller
         $request->validate([
             'student_id.*' => 'required|exists:students,id',
             'score.*' => 'required|numeric|min:0|max:100',
-    ]);
+        ]);
 
             $studentIds = $request->input('student_id');
             $scores = $request->input('score');
@@ -95,6 +112,43 @@ class ClassroomController extends Controller
          return redirect()->route('classroom.show', $classroom)->with('success', 'Calificaciones asignadas exitosamente');
 
     
+    }
+        public function edit($id)
+    {
+            // Recuperar el aula por su ID
+            $classroom = Classroom::findOrFail($id);
+
+            // Recuperar la lista de profesores y estudiantes para opciones de selección
+            $teachers = Teacher::all();
+            $students = Student::all();
+            $courses = Course::all();
+
+            // Cargar la vista de edición y pasar los datos necesarios
+            return view('classroom.edit', compact('classroom', 'teachers', 'students', 'courses'));
+    }
+
+       
+        public function destroy(Classroom $classroom)
+    {
+        // Eliminar el aula
+        $classroom->delete();
+
+        // Redirigir a la página de aulas o a donde desees después de la eliminación
+        return redirect()->route('classroom.index')->with('success', 'Aula eliminada exitosamente.');
+    }
+    public function storeStudents(Request $request, Classroom $classroom)
+    {
+        // Validar los datos del formulario
+        $request->validate([
+            'students' => 'required|array',
+            'students.*' => 'exists:students,id',
+        ]);
+
+        // Asignar estudiantes al aula
+        $classroom->students()->sync($request->input('students'));
+
+        return redirect()->route('classrooms.index')
+            ->with('success', 'Estudiantes asignados exitosamente.');
     }
 }
 

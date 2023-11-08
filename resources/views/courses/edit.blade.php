@@ -19,13 +19,13 @@
 
                         <div class="form-group">
                             <label for="nombre">Nombre del Curso:</label>
-                            <input type="text" name="nombre" value="{{ $course->nombre }}" class="form-control">
+                            <input type="text" name="nombre" value="{{ $course->name }}" class="form-control">
                         </div>
-
+                        {{-- 
                         <div class="form-group">
                             <label for="descripcion">Descripción:</label>
                             <textarea name="descripcion" class="form-control">{{ $course->descripcion }}</textarea>
-                        </div>
+                        </div> --}}
 
                         <button type="submit" class="btn btn-primary">Guardar Cambios</button>
                     </form>
